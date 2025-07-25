@@ -2,6 +2,8 @@ import { Client, LocalAuth } from "whatsapp-web.js";
 
 export class WhatsappClientProvider {
 
+    public static HEADLESS: boolean = false;
+
     public static getWhatsappClient(instanceName: string): Client {
         const whatsappClient = new Client({
             authStrategy: new LocalAuth(
@@ -10,7 +12,7 @@ export class WhatsappClientProvider {
                 }
             ),
             puppeteer: {
-                headless: false,
+                headless: WhatsappClientProvider.HEADLESS,
                 executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
                 handleSIGINT: false,
                 args: [

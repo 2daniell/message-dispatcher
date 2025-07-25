@@ -30,6 +30,11 @@ export class DispatchCommand implements Command {
             this.dispatchState.setMessageId(message.id._serialized);
 
             console.log("ID colocado no State: " + this.dispatchState.getMessageId)
+
+            await message.react("✅");
+            await sleep(1500);
+            await message.reply("✅ Disparo iniciado com sucesso!");
+            await sleep(1000);
         }
 
         const groups: GroupChat[] = this.groupRepository.getGroups();
@@ -73,6 +78,9 @@ export class DispatchCommand implements Command {
 
         this.dispatchState.resetState();
         console.log("✅ Disparo finalizado com sucesso.");
+
+        await sleep(1000);
+        await message.reply("✅ Disparo finalizado com sucesso!");
     }
     
 }
